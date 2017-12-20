@@ -1,0 +1,179 @@
+
+Usage: java -jar opengrok.jar [options] [subDir1 [...]]
+
+  -?, -h, --help 
+	Display this usage summary.
+	
+  -A, --analyzer (.ext|prefix.):(-|analyzer)
+	Files with the named prefix/extension should be analyzed
+	with the given analyzer, where 'analyzer' may be specified
+	using a simple class name (CAnalyzer) or language name (C)
+	(Note, analyzer specification is case sensitive)
+	  Ex: -A .foo:CAnalyzer
+	      will use the C analyzer for all files ending with .foo
+	  Ex: -A bar.:C
+	      will use the C analyzer for all files starting with bar.
+	  Ex: -A .c:-
+	      will disable the C analyzer for for all files ending with .c
+	
+  -c, --ctags /path/to/ctags
+	Path to Exuberant or Universal Ctags
+	By default takes the Exuberant Ctags in PATH.
+	
+  -d, --dataRoot /path/to/data/root
+	The directory where OpenGrok stores the generated data.
+	
+  --deleteHistory /path/to/repository
+	Delete the history cache for the given repository and exit.
+	Use '*' to delete the cache for all repositories.
+	
+  --depth number
+	Scanning depth for repositories in directory structure relative to
+	source root. Default is 3.
+	
+  -e, --economical 
+	Economical, consumes less disk space.
+	It does not generate hyper text cross reference files offline,
+	but will do so on demand, which could be sightly slow.
+	
+  -G, --assignTags 
+	Assign commit tags to all entries in history for all repositories.
+	
+  -H, --history [/path/to/repository]
+	Get history for specific repositories (specified as
+	absolute path from source root), or ALL repositories
+	when none specified.
+	
+  -I, --include pattern
+	Only files matching this pattern will be examined.
+	(supports wildcards, example: -I *.java -I *.c)
+	
+  -i, --ignore pattern
+	Ignore the named files (prefixed with 'f:')
+	or directories (prefixed with 'd:').
+	Supports wildcards (example: -i *.so -i *.dll)
+	
+  -l, --lock on/off
+	Turn on/off locking of the Lucene database during index generation.
+	
+  --leadingWildCards on/off
+	Allow or disallow leading wildcards in a search.
+	
+  --listRepos
+	List all repository paths and exit.
+	
+  -m, --memory number
+	Amount of memory that may be used for buffering added documents and
+	deletions before they are flushed to the directory (default 16.0MB).
+	Please increase JVM heap accordingly, too.
+	
+  --man
+	Generate OpenGrok XML manual page.
+	
+  --mandoc /path/to/mandoc
+	Path to mandoc(1) binary.
+	
+  -n, --noIndex 
+	Do not generate indexes, but process all other command line options.
+	
+  -O, --optimize on/off
+	Turn on/off the optimization of the index database
+	as part of the indexing step.
+	
+  -o, --ctagOpts path
+	File with extra command line options for ctags.
+	
+  -P, --projects 
+	Generate a project for each top-level directory in source root.
+	
+  -p, --defaultProject /path/to/default/project
+	This is the path to the project that should be selected
+	by default in the web application (when no other project
+	set either in cookie or in parameter). May be used multiple
+	times for several projects. Use "__all__" for all projects.
+	You should strip off the source root.
+	
+  --progress
+	Print per project percentage progress information.
+	(I/O extensive, since one read through directory structure is
+	made before indexing, needs -v, otherwise it just goes to the log)
+	
+  -Q, --quickScan on/off
+	Turn on/off quick context scan. By default, only the first
+	1024k of a file is scanned, and a '[..all..]' link is inserted
+	when the file is bigger. Activating this may slow the server down.
+	(Note: this is setting only affects the web application)
+	
+  -q, --quiet 
+	Run as quietly as possible.
+	
+  -R /path/to/configuration
+	Read configuration from the specified file.
+	
+  -r, --remote on|off|uionly|dirbased
+	Specify support for remote SCM systems.
+	      on - allow retrieval for remote SCM systems.
+	     off - ignore SCM for remote systems.
+	  uionly - support remote SCM for user interface only.
+	dirbased - allow retrieval during history index only for repositories
+	           which allow getting history for directories.
+	
+  --renamedHistory on/off
+	Enable or disable generating history for renamed files.
+	If set to on, makes history indexing slower for repositories
+	with lots of renamed files.
+	
+  -S, --search 
+	Search for "external" source repositories and add them.
+	
+  -s, --source /path/to/source/root
+	The root directory of the source tree.
+	
+  --style path
+	Path to the subdirectory in the web-application containing the
+	requested stylesheet. The factory-setting is: "default".
+	
+  --symlink /path/to/symlink
+	Allow this symlink to be followed. Option may be repeated.
+	By default only symlinks directly under source root directory
+	are allowed.
+	
+  -T, --threads number
+	The number of threads to use for index generation.
+	By default the number of threads will be set to the
+	number of available CPUs.
+	
+  -t, --tabSize number
+	Default tab size to use (number of spaces per tab character).
+	
+  -U, --host host:port
+	Send the current configuration to the specified address
+	(This is most likely the web-app configured with ConfigAddress)
+	
+  --updateConfig
+	Populate the webapp with bare configuration and exit.
+	
+  --userPage URL
+	Base URL of the user Information provider.
+	Example: "http://www.myserver.org/viewProfile.jspa?username=".
+	Use "none" to disable link.
+	
+  --userPageSuffix URL-suffix
+	URL Suffix for the user Information provider. Default: "".
+	
+  -V, --version 
+	Print version and quit.
+	
+  -v, --verbose 
+	Print progress information as we go along.
+	
+  -W, --writeConfig /path/to/configuration
+	Write the current configuration to the specified file
+	(so that the web application can use the same configuration)
+	
+  -w, --web webapp-context
+	Context of webapp. Default is /source. If you specify a different
+	name, make sure to rename source.war to that name. Also FULL reindex
+	is needed if this is changed.
+	
+

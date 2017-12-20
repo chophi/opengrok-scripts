@@ -1,0 +1,11 @@
+JAVA is from: /usr/lib/jvm/java-1.8.0-openjdk-amd64//bin/java
+Memory limit: -Xmx4096m
+You must specify a configuration file
+USAGE: Search -R <configuration.xml> [-d | -r | -p | -h | -f | -t] 'query string' ..
+	 -R <configuration.xml> Read configuration from the specified file
+	 -d Symbol Definitions
+	 -r Symbol References
+	 -p Path
+	 -h History
+	 -f Full text
+	 -t Type
