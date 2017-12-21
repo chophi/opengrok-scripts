@@ -17,4 +17,5 @@ java $memory_setting \
      -i d:.repo \
      -i d:prebuilts \
      -i d:.log \
-     -i d:.opengrok
+     -i d:.opengrok \
+     -i d:out
