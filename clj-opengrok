@@ -30,7 +30,6 @@ if [ "$first_arg" == "index" ]; then
     time java $memory_setting \
          -jar $opengrok_lib \
          -c $ctags \
-         -P \
          $@ \
          1>$log_file \
          2>$log_file
