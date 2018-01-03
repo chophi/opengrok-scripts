@@ -25,7 +25,7 @@ echo Parameters are: [$@]
 shift
 if [ "$first_arg" == "index" ]; then
     mkdir -p ~/logs/opengrok/
-    log_file=~/logs/opengrok/index-`bdate`.log
+    log_file=~/logs/opengrok/index-`date +"%Y.%m.%d-%H.%M.%S"`.log
     echo "Log file: $log_file"
     time java $memory_setting \
          -jar $opengrok_lib \
