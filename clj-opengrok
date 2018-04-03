@@ -34,9 +34,17 @@ if [ "$first_arg" == "index" ]; then
          1>$log_file \
          2>$log_file
     echo "Index completed"
+elif [ "$first_arg" == "search_full_text" ]; then
+    commands=""
+    next=""
+    for arg in "$@"; do
+        commands=${commands}${next}
+        next=" "$arg
+        last=$arg
+    done
+    echo Search command is: [java $memory_setting -cp $opengrok_lib $class $commands \""$last"\"
+    time java $memory_setting -cp $opengrok_lib $class $commands\""$last"\"
 elif [ "$first_arg" == "search" ]; then
-    time java $memory_setting \
-         -cp $opengrok_lib \
-         $class \
-         $@
+    echo Search command is: [java $memory_setting -cp $opengrok_lib $class $@]
+    time java $memory_setting -cp $opengrok_lib $class $@
 fi
